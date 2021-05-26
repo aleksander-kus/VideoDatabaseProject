@@ -113,3 +113,14 @@ INSERT INTO Genres VALUES
 INSERT INTO Videos_Genres VALUES
 (1, 1), (2, 1), (3, 1), (3, 3), (4, 2), (5, 2), (6, 2), (7, 3), (8, 3)
 
+INSERT INTO Users VALUES
+(
+	'MusicFan', 'music.fan@gmail.com'
+),
+(
+	'CatGaming', 'catgaming@gmail.com'
+),
+(
+	'GamingMaster', 'gaming.master@gmail.com'
+)
+
