@@ -58,3 +58,17 @@ CREATE TABLE Subscriptions
 	ChannelID	INT NOT NULL FOREIGN KEY REFERENCES Channels(ChannelID),
 	PRIMARY KEY (UserID, ChannelID)
 )
+
+INSERT INTO Channels VALUES
+(
+	'Music Channel'
+),
+(
+	'Lets Play Channel'
+),
+(
+	'Review Channel'
+),
+(
+	'Cats'
+)
