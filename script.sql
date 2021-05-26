@@ -133,6 +133,14 @@ INSERT INTO Watch_History VALUES
 (2, 8, '2020-01-03 12:30:01'), (3, 4, '2020-01-02 12:32:01'), (3, 5, '2020-01-02 13:42:01'), (3, 6, '2020-01-02 15:12:01'), (1, 1, '2020-01-03 09:03:01'), (1, 1, '2020-01-03 09:10:01'),
 (1, 1, '2020-01-03 09:15:01'), (1, 1, '2020-01-03 09:20:01')
 
-SELECT * FROM Videos v
-JOIN [Videos_Genres] vg on vg.VideoID = v.VideoID
-JOIN Genres g on g.GenreID = vg.GenreID
+UPDATE Users
+SET Email = 'music.fan@yahoo.com'
+WHERE UserID = 1
+
+UPDATE Users
+SET Email = 'cat.gaming@yahoo.com'
+WHERE UserID = 2
+
+UPDATE Users
+SET Email = 'gaming.master@yahoo.com'
+WHERE UserID = 3
