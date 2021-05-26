@@ -72,3 +72,30 @@ INSERT INTO Channels VALUES
 (
 	'Cats'
 )
+
+INSERT INTO Videos VALUES
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Music Channel'), 'My first song!', '00:03:00'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Music Channel'), 'My second song!', '00:04:15'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Music Channel'), 'A cat song!', '00:02:49'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Review Channel'), 'New Game review. Is it as good as people claim?', '00:21:36'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Lets Play Channel'), 'Lets play New Game S01E01', '00:15:42'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Lets Play Channel'), 'Lets play New Game S01E02', '00:20:04'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Cats'), 'Everything you need to know about cats', '10:56:59'
+),
+(
+	(SELECT ChannelID FROM Channels WHERE Name = 'Cats'), 'Why are cats superior animals?', '20:08:01'
+)
+
