@@ -124,3 +124,6 @@ INSERT INTO Users VALUES
 	'GamingMaster', 'gaming.master@gmail.com'
 )
 
+INSERT INTO Subscriptions VALUES
+(1, 1), (2, 2), (2, 3), (3, 2)
+
