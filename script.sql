@@ -99,3 +99,14 @@ INSERT INTO Videos VALUES
 	(SELECT ChannelID FROM Channels WHERE Name = 'Cats'), 'Why are cats superior animals?', '20:08:01'
 )
 
+INSERT INTO Genres VALUES
+(
+	'Music'
+),
+(
+	'Gaming'
+),
+(
+	'Animals'
+)
+
