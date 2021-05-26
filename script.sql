@@ -50,4 +50,11 @@ CREATE TABLE Watch_History
 	VideoID		INT NOT NULL FOREIGN KEY REFERENCES Videos(VideoID),
 	Watch_Time	DATE NOT NULL,
 	PRIMARY KEY (UserID, VideoID)
-)
+)
+
+CREATE TABLE Subscriptions
+(
+	UserID		INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
+	ChannelID	INT NOT NULL FOREIGN KEY REFERENCES Channels(ChannelID),
+	PRIMARY KEY (UserID, ChannelID)
+)
