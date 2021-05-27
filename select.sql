@@ -40,3 +40,18 @@ JOIN
 	GROUP BY g.GenreID
 ) as tmp on tmp.GenreID = vg1.GenreID AND tmp.ViewCount = vt1.ViewCount
 ORDER BY g.GenreID;
+
+-- 4. For each channel display the ratio of views to amount of posted videos
+SELECT c.Name, CAST(a.[Videos watched] as float) / COUNT(v.VideoID) as 'Views to posted ratio'
+FROM Videos v
+JOIN Channels c on c.ChannelID = v.ChannelID
+JOIN
+(
+	SELECT c.Name, COUNT(wh.VideoID) as 'Videos watched'
+	FROM Watch_History wh
+	Join Videos v on v.VideoID = wh.VideoID
+	Join Channels c on c.ChannelID = v.ChannelID
+	GROUP BY c.Name
+) a on a.Name = c.Name
+GROUP BY c.Name, a.[Videos watched]
+ORDER BY [Views to posted ratio] DESC
