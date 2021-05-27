@@ -9,3 +9,24 @@ Join Channels c on c.ChannelID = v.ChannelID
 GROUP BY Nick, c.Name, c.ChannelID
 ORDER BY c.ChannelID;
 
+-- 3. Most popular video in each genre
+WITH ViewTable (VideoID, Title, ViewCount) AS
+(
+	SELECT v.VideoID, v.Title, COUNT(v.VideoID) as ViewCount
+	FROM Videos v
+	Join Watch_History wh on wh.VideoID = v.VideoID
+	GROUP BY v.VideoID, v.Title
+)
+SELECT g.Name as 'Genre', vt1.Title as 'Most popular video', vt1.ViewCount as 'View Count'
+FROM Genres g
+JOIN Videos_Genres vg1 on vg1.GenreID = g.GenreID
+JOIN  ViewTable vt1 on vt1.VideoID = vg1.VideoID
+JOIN
+(
+	SELECT g.GenreID, MAX(vt.ViewCount) as ViewCount
+	FROM Genres g
+	JOIN Videos_Genres vg on vg.GenreID = g.GenreID
+	JOIN  ViewTable vt on vt.VideoID = vg.VideoID
+	GROUP BY g.GenreID
+) as tmp on tmp.GenreID = vg1.GenreID AND tmp.ViewCount = vt1.ViewCount
+ORDER BY g.GenreID;
