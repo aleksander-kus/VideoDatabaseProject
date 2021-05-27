@@ -10,19 +10,19 @@ GROUP BY Nick, c.Name, c.ChannelID
 ORDER BY c.ChannelID;
 
 -- 2. Subscribed users who watches < 3 videos on each channel
-SELECT u.Nick, c.Name, COUNT(wh.VideoID) as 'Videos watched'
+SELECT u.Nick, c.Name, COUNT(*) as 'Videos watched'
 FROM Users u
 Join Watch_History wh on wh.UserID = u.UserID
 Join Videos v on v.VideoID = wh.VideoID
 Join Channels c on c.ChannelID = v.ChannelID
 WHERE c.ChannelID IN (SELECT ChannelID FROM Subscriptions s WHERE s.UserID = u.UserID)
 GROUP BY u.Nick, c.Name
-HAVING COUNT(wh.VideoID) < 3;
+HAVING COUNT(*) < 3;
 
 -- 3. Most popular video in each genre
 WITH ViewTable (VideoID, Title, ViewCount) AS
 (
-	SELECT v.VideoID, v.Title, COUNT(v.VideoID) as ViewCount
+	SELECT v.VideoID, v.Title, COUNT(*) as ViewCount
 	FROM Videos v
 	Join Watch_History wh on wh.VideoID = v.VideoID
 	GROUP BY v.VideoID, v.Title
