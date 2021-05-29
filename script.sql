@@ -174,3 +174,12 @@ WHERE UserID = 2
 UPDATE Users
 SET Email = 'gaming.master@yahoo.com'
 WHERE UserID = 3
+
+SELECT u.Nick as 'User', v.Title as 'Video Title', v.Duration as 'Video Duration', c.Name as 'Channel Name', g.Name as 'Genre'
+FROM Watch_History wh
+JOIN Videos v on v.VideoID = wh.VideoID
+JOIN Users u on u.UserID = wh.UserID
+JOIN Channels c on c.ChannelID = v.ChannelID
+JOIN Videos_Genres vg on vg.VideoID = v.VideoID
+JOIN Genres g on g.GenreID = vg.GenreID
+ORDER BY Watch_Time
