@@ -22,10 +22,12 @@ CREATE INDEX ix_U_Nick ON Users(Nick);
 CREATE TABLE Channels
 (
 	ChannelID	INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Name		VARCHAR(50) NOT NULL		
+	Name		VARCHAR(50) NOT NULL,
+	OwnerID		INT NOT NULL FOREIGN KEY REFERENCES Users(UserID)
 )
 
 CREATE INDEX ix_C_Name ON Channels(Name);
+CREATE INDEX ix_C_OwnerID ON Channels(OwnerID);
 
 CREATE TABLE Videos
 (
@@ -100,16 +102,16 @@ INSERT INTO Users VALUES
 
 INSERT INTO Channels VALUES
 (
-	'Music Channel'
+	'Music Channel', 4
 ),
 (
-	'Lets Play Channel'
+	'Lets Play Channel', 5
 ),
 (
-	'Review Channel'
+	'Review Channel', 6
 ),
 (
-	'Cats'
+	'Cats', 7
 )
 
 INSERT INTO Videos VALUES
@@ -151,17 +153,6 @@ INSERT INTO Genres VALUES
 
 INSERT INTO Videos_Genres VALUES
 (1, 1), (2, 1), (3, 1), (3, 3), (4, 2), (5, 2), (6, 2), (7, 3), (8, 3)
-
-INSERT INTO Users VALUES
-(
-	'MusicFan', 'music.fan@gmail.com'
-),
-(
-	'CatGaming', 'catgaming@gmail.com'
-),
-(
-	'GamingMaster', 'gaming.master@gmail.com'
-)
 
 INSERT INTO Subscriptions VALUES
 (1, 1), (2, 2), (2, 3), (3, 2)
