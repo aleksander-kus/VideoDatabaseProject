@@ -81,3 +81,5 @@ BEGIN
 	END CATCH;
 END
 
+-- execute procedure
+EXECUTE arch 24;
