@@ -12,3 +12,9 @@ ADD CONSTRAINT [PK_WatchID] Primary Key (WatchID),
 
 set Identity_insert dbo.HistoryArchive ON;
 
+-- Add ViewsCnt column to Videos table
+ALTER TABLE Videos
+ADD ViewsCnt INT NOT NULL DEFAULT(0);
+SELECT * FROM Videos
+GO
+
