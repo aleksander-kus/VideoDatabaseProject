@@ -16,6 +16,8 @@ CREATE TABLE Channels
 	Name		VARCHAR(50) NOT NULL		
 )
 
+CREATE INDEX ix_C_Name ON Channels(Name);
+
 CREATE TABLE Videos
 (
 	VideoID		INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -23,6 +25,9 @@ CREATE TABLE Videos
 	Title		VARCHAR(70) NOT NULL,
 	Duration	TIME NOT NULL
 )
+
+CREATE INDEX ix_Vids_ChannelID ON Videos(ChannelID);
+CREATE INDEX ix_Vids_Title ON Videos(Title);
 
 CREATE TABLE Genres
 (
@@ -37,6 +42,9 @@ CREATE TABLE Videos_Genres
 	PRIMARY KEY (VideoID, GenreID),
 )
 
+CREATE INDEX ix_VG_VideoID ON Videos_Genres(VideoID);
+CREATE INDEX ix_VG_GenreID ON Videos_Genres(GenreID);
+
 CREATE TABLE Users
 (
 	UserID		INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -44,20 +52,28 @@ CREATE TABLE Users
 	Email		VARCHAR(50) NOT NULL
 )
 
+CREATE INDEX ix_U_Nick ON Users(Nick);
+
 CREATE TABLE Watch_History
 (
-	WatchID		INT NOT NULL PRIMARY KEY IDENTITY(1, 1),
+	WatchID		INT NOT NULL PRIMARY KEY NONCLUSTERED IDENTITY(1, 1),
 	UserID		INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
 	VideoID		INT NOT NULL FOREIGN KEY REFERENCES Videos(VideoID),
 	Watch_Time	DATETIME NOT NULL,
 )
 
+CREATE CLUSTERED INDEX ix_WH_UserID ON Watch_History(UserID);
+CREATE INDEX ix_WH_VideoID ON Watch_History(VideoID);
+
 CREATE TABLE Subscriptions
 (
 	UserID		INT NOT NULL FOREIGN KEY REFERENCES Users(UserID),
 	ChannelID	INT NOT NULL FOREIGN KEY REFERENCES Channels(ChannelID),
-	PRIMARY KEY (UserID, ChannelID)
+	PRIMARY KEY NONCLUSTERED (UserID, ChannelID)
 )
+
+CREATE CLUSTERED INDEX ix_Sub_UserID ON Subscriptions(UserID);
+CREATE INDEX ix_Sub_ChannelID ON Subscriptions(ChannelID);
 
 INSERT INTO Channels VALUES
 (
