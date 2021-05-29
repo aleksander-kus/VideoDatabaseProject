@@ -10,6 +10,15 @@ GO
 
 USE PD2
 
+CREATE TABLE Users
+(
+	UserID		INT NOT NULL PRIMARY KEY IDENTITY(1,1),
+	Nick		VARCHAR(50) NOT NULL,
+	Email		VARCHAR(50) NOT NULL
+)
+
+CREATE INDEX ix_U_Nick ON Users(Nick);
+
 CREATE TABLE Channels
 (
 	ChannelID	INT NOT NULL PRIMARY KEY IDENTITY(1,1),
@@ -45,15 +54,6 @@ CREATE TABLE Videos_Genres
 CREATE INDEX ix_VG_VideoID ON Videos_Genres(VideoID);
 CREATE INDEX ix_VG_GenreID ON Videos_Genres(GenreID);
 
-CREATE TABLE Users
-(
-	UserID		INT NOT NULL PRIMARY KEY IDENTITY(1,1),
-	Nick		VARCHAR(50) NOT NULL,
-	Email		VARCHAR(50) NOT NULL
-)
-
-CREATE INDEX ix_U_Nick ON Users(Nick);
-
 CREATE TABLE Watch_History
 (
 	WatchID		INT NOT NULL PRIMARY KEY NONCLUSTERED IDENTITY(1, 1),
@@ -74,6 +74,29 @@ CREATE TABLE Subscriptions
 
 CREATE CLUSTERED INDEX ix_Sub_UserID ON Subscriptions(UserID);
 CREATE INDEX ix_Sub_ChannelID ON Subscriptions(ChannelID);
+
+INSERT INTO Users VALUES
+(
+	'MusicFan', 'music.fan@gmail.com'
+),
+(
+	'CatGaming', 'catgaming@gmail.com'
+),
+(
+	'GamingMaster', 'gaming.master@gmail.com'
+),
+(
+	'MusicFactory', 'music.factory@gmail.com'
+),
+(
+	'GameReviewer', 'game.reviewer@gmail.com'
+),
+(
+	'LetsPlayer', 'letsplayer@gmail.com'
+),
+(
+	'CatLover', 'cat.lover@gmail.com'
+)
 
 INSERT INTO Channels VALUES
 (
