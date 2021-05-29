@@ -49,7 +49,7 @@ JOIN
 ORDER BY g.GenreID;
 
 -- 4. For each channel display the ratio of views to amount of posted videos
-SELECT c.Name, CAST(a.[Videos watched] as float) / COUNT(*) as 'Views to posted ratio'
+SELECT c.Name, CAST(CAST(a.[Videos watched] as decimal(10,3)) / CAST(COUNT(*) as decimal(10,3)) as decimal(10, 3)) as 'Views to posted ratio'
 FROM Videos v
 JOIN Channels c on c.ChannelID = v.ChannelID
 JOIN
