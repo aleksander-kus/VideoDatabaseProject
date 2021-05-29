@@ -82,3 +82,4 @@ END
 
 -- execute procedure
 EXECUTE arch 30;
+SELECT * FROM HistoryArchive
