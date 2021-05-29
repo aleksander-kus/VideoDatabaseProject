@@ -17,7 +17,7 @@ CREATE TABLE Users
 	Email		VARCHAR(50) NOT NULL
 )
 
-CREATE INDEX ix_U_Nick ON Users(Nick);
+CREATE UNIQUE INDEX ix_U_Nick ON Users(Nick);
 
 CREATE TABLE Channels
 (
@@ -26,7 +26,7 @@ CREATE TABLE Channels
 	OwnerID		INT NOT NULL FOREIGN KEY REFERENCES Users(UserID)
 )
 
-CREATE INDEX ix_C_Name ON Channels(Name);
+CREATE UNIQUE INDEX ix_C_Name ON Channels(Name);
 CREATE INDEX ix_C_OwnerID ON Channels(OwnerID);
 
 CREATE TABLE Videos
