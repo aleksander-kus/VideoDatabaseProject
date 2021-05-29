@@ -37,7 +37,7 @@ WITH ViewTable (VideoID, Title, ViewCount) AS
 SELECT g.Name as 'Genre', vt1.Title as 'Most popular video', vt1.ViewCount as 'View Count'
 FROM Genres g
 JOIN Videos_Genres vg1 on vg1.GenreID = g.GenreID
-JOIN  ViewTable vt1 on vt1.VideoID = vg1.VideoID
+JOIN ViewTable vt1 on vt1.VideoID = vg1.VideoID
 JOIN
 (
 	SELECT g.GenreID, MAX(vt.ViewCount) as ViewCount
